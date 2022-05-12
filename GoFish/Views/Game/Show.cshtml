@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go Fish!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>@Model.Name</h1>
+    <h3>@Model.Score</h3>
+    <ul>
+    @foreach(string card in @Model.Pairs)
+    {
+      <li>@card</li>
+    }
+    </ul>
+    <form action="/game/turn" method="post">
+    <input id="playerName" name="playerName" value="@Model.Name" type="hidden">
+    <label>Pick a Card to Ask for</label>
+    <select id="card" name="card">
+    @foreach(string card in @Model.Hand)
+    {
+      <option value="@card">@card</option>
+    }
+    </select>
+    <button type="submit">Ask</button>
+    </form>
+  </body>
+</html>
